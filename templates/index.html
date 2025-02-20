@@ -23,7 +23,7 @@
 
   {% include 'navbar.html' %}
    <h1>List Item</h1>
-  <form method="POST" action="/">
+  <form class="search" method="POST" action="/">
     {%csrf_token%}
 
     {{form|crispy}}

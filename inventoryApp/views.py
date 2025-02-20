@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .forms import Stock_Create_form, Stock_Search_Form
 from .models import Stock
+from django.contrib import messages
+
 # Create your views here.
 
 
@@ -30,11 +32,21 @@ def addItems(request):
     
     form=Stock_Create_form()
     if request.method=='POST':
+        category=request.POST.get('category','')
         form=Stock_Create_form(request.POST)
         
+        
+        
+        
+        
+        
+        
         if form.is_valid:
-            form.save()
-            return redirect('')
+            if Stock.objects.filter(category=category).exists():
+                messages.info(request,'Category Already Exist')
+            else:
+                form.save()
+                return redirect('')
         
     context={'form':form}
     return render(request,'add-item.html',context=context)
