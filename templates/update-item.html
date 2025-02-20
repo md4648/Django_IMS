@@ -1,5 +1,8 @@
+
 {% load static %}
 {% load crispy_forms_tags %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,60 +21,24 @@
 
     <title>Document</title>
 </head>
-
 <body>
 
-  {% include 'navbar.html' %}
-   <h1>List Item</h1>
-  <form class="search" method="POST" action="/">
-    {%csrf_token%}
+    {% include 'navbar.html' %}
+   
+    
 
-    {{form|crispy}}
-    <input type="submit" value="Search"/>
-  </form>
-<div class="displaytabel">
-
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">count</th>
-            <th scope="col">Category</th>
-            <th scope="col">Item Name</th>
-            <th scope="col">Quantity In Store</th>
-          </tr>
-        </thead>
-        <tbody>
-          {%for item in item %}
-       
-          <tr>
-            <th scope="row">{{item.id}}</th>
-            <td>{{item.category}}</td>
-            <td><a href="{% url 'update-item' item.id %}">{{item.item_name}}</a> </td>
-            <td>{{item.quantity}}</td>
-          </tr>
-
-        
-          {%endfor%}
-        
-        
-        </tbody>
-      </table>
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
+    <div class="card">
+        <h5 class="card-header">Update Item</h5>
+      
+        <div class="card-body">
+            <form action="" method='post'>
+                {%csrf_token%}
+                {{form|crispy}}
+                <input type="submit" value=" SAVE">
+            </form>
+        </div>
+    
+      </div>
 
 </body>
 </html>

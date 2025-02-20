@@ -37,6 +37,17 @@ class Stock_Search_Form(forms.ModelForm):
         fields=['category','item_name']
         
         
+        
+class Update_Stock_Form(forms.ModelForm):
+    class Meta:
+
+        model=Stock
+        fields=['category','item_name','quantity']
+        
+        
+        
+        
+        
 
 
         
