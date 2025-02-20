@@ -21,6 +21,8 @@ def Home(request):
         
         context={
             'item': queryset,   'form':form }
+        
+    # print(queryset[1].item_name)
 
     return render(request,'index.html',context=context)
 
@@ -32,10 +34,10 @@ def addItems(request):
     if request.method=='POST':
         form=Stock_Create_form(request.POST)
         
-        if form.is_valid:
+        if form.is_valid():
             
             form.save()
-            return redirect('')
+            return redirect('/')
         
     context={'form':form}
     return render(request,'add-item.html',context=context)
@@ -49,12 +51,20 @@ def updateItem(request,pk):
     if request.method=="POST":
         form=Update_Stock_Form(request.POST, instance=item)
         
-        if form.is_valid:
+        if form.is_valid():
             form.save()
             return redirect('/')
             
     context={'form':form}
     
     return render(request,'update-item.html',context=context)
+
+
+def delete_item(request,pk):
+    queryset=Stock.objects.get(id=pk)
+    if request.method=='POST':
+        queryset.delete()
+        return redirect('/')
+    return render(request, 'delete_item.html')
         
     

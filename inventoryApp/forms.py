@@ -18,6 +18,8 @@ class Stock_Create_form(forms.ModelForm):
         for instance in Stock.objects.all():
             if instance.category==Fcategory:
                 raise forms.ValidationError(instance.category+' is Already Exist!')
+            
+        return Fcategory
     
     def clean_item_name(self):
         Fitem_name=self.cleaned_data.get('item_name')
@@ -28,6 +30,8 @@ class Stock_Create_form(forms.ModelForm):
         for instance in Stock.objects.all():
             if instance.item_name==Fitem_name:
                 raise forms.ValidationError(instance.item_name+' is Already Exist')
+            
+        return Fitem_name
             
         
 class Stock_Search_Form(forms.ModelForm):
