@@ -1,0 +1,20 @@
+.card {
+  padding: 50px
+}
+
+nav {
+
+  margin: 40px;
+  
+}
+
+body{
+  padding: 50px;
+}
+
+.displaytabel{
+
+  margin: auto;
+  width: 85%;
+  box-shadow: 12px 12px 20px 6px rgb(95, 93, 93);
+}
