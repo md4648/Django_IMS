@@ -21,7 +21,7 @@ def Home(request):
         
         if form['export_to_CSV'].value()==True:
             response=HttpResponse(content_type='text/csv')
-            response['Content-Disposition']='attachment: filename="List of stock.csv"'
+            response['Content-Disposition']='attachment; filename="List of stock.csv"'
             writer=csv.writer(response)
             writer.writerow(['CATEGORY','ITEM NAME','QUANTITY'])
             instance=queryset
