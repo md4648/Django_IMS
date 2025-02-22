@@ -23,3 +23,12 @@ body{
   width: 85%;
   box-shadow: 12px 12px 20px 6px rgb(95, 93, 93);
 }
+
+.success{
+  list-style: none;
+  background-color: brown;
+  color: white;
+  box-shadow: 12px 12px 12px #e61c66;
+  text-align: center;
+
+}

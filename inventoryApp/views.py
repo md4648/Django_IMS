@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .forms import Stock_Create_form, Stock_Search_Form,Update_Stock_Form
 from .models import Stock
 from django.http import HttpResponse
+from django.contrib import messages
 import csv
 
 # Create your views here.
@@ -47,6 +48,8 @@ def addItems(request):
         if form.is_valid():
             
             form.save()
+            messages.success(request,'Item created succssefully')
+
             return redirect('/')
         
     context={'form':form}
@@ -63,6 +66,7 @@ def updateItem(request,pk):
         
         if form.is_valid():
             form.save()
+            messages.success(request,'updated succussefully')
             return redirect('/')
             
     context={'form':form}
@@ -74,6 +78,7 @@ def delete_item(request,pk):
     queryset=Stock.objects.get(id=pk)
     if request.method=='POST':
         queryset.delete()
+        messages.success(request,'Deleted succssefully')
         return redirect('/')
     return render(request, 'delete_item.html')
         
