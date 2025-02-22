@@ -13,7 +13,7 @@ class Category(models.Model):
             return self.name
 
 class Stock(models.Model):
-    category=models.ForeignKey(Category,on_delete=models.CASCADE) 
+    category=models.ForeignKey(Category,on_delete=models.CASCADE,blank=True) 
     item_name=models.CharField(max_length=50,blank=True,null=True)
     quantity=models.IntegerField(default=0,blank=True,null=True)
     received_by=models.CharField(max_length=50,blank=True,null=True)
@@ -24,7 +24,7 @@ class Stock(models.Model):
     created_by=models.CharField(max_length=50,blank=True,null=True)
     reorder_level=models.IntegerField(default=0,blank=True,null=True)
     last_update=models.DateTimeField(auto_now_add=False,auto_now=True)
-    export_to_CSV=models.BooleanField(default=False)
+    # export_to_CSV=models.BooleanField(default=False)
 
 
 def __str__(self):

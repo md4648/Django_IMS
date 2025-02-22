@@ -35,6 +35,7 @@ class Stock_Create_form(forms.ModelForm):
             
         
 class Stock_Search_Form(forms.ModelForm):
+    export_to_CSV=forms.BooleanField(required=False)
     class Meta:
 
         model=Stock
