@@ -37,8 +37,9 @@
              <th scope="col">Item Name</th>
             
             <th scope="col">Quantity In Store</th>
+             <th>Reorder Level</th>
             <th scope="col">Last Updated</th>
-            <th>Reorder Level</th>
+           
           </tr>
         </thead>
         <tbody>
@@ -47,9 +48,26 @@
           <tr>
             <td><a href="{% url 'update-item' item.id %}">{{item.item_name}}</a> </td>
             
-            <td>{{item.quantity}}</td>
+
+      
+
+              {%if item.quantity <= item.reorder_level%}
+
+            <td><a href="{% url 'stock_detail' item.id %}"><div  style="background: red; text-decoration: none; text-align: center;">{{item.quantity}}</div></a></td>
+            {%else%}
+
+            <td><a href="{% url 'stock_detail' item.id %}"><div >{{item.quantity}}  </div></a></td>
+
+            {%endif%}
+           
+
+
+
+
+
+           <td><a href="{%url 'reorder_item' item.id %}">{{item.reorder_level}}</a></td>
             <td>{{item.last_update}}</td>
-            <td>{{item.reorder_level}}</td>
+            
             
           </tr>
 

@@ -61,6 +61,13 @@ class IssueForm(forms.ModelForm):
         
         model=Stock
         fields=['issue_by','issue_quantity']
+
+
+class ReorderForm(forms.ModelForm):
+    class Meta:
+
+        model=Stock
+        fields=['reorder_level']
         
         
         

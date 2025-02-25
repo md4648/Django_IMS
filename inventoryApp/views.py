@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .forms import Stock_Create_form, Stock_Search_Form,Update_Stock_Form,ReceiveForm,IssueForm
+from .forms import Stock_Create_form, Stock_Search_Form,Update_Stock_Form,ReceiveForm,IssueForm,ReorderForm
 from .models import Stock
 from django.http import HttpResponse
 from django.contrib import messages
@@ -128,6 +128,28 @@ def issue_item(request,pk):
             
     context={'form':form}
     return render(request,'issue_item.html',context=context)
+
+
+def reorder_item(request,pk):
+
+    item=Stock.objects.get(id=pk)
+
+    form=ReorderForm(instance=item)
+
+    if request.method=='POST':
+        form=ReorderForm(request.POST or None, instance=item)
+
+        if form.is_valid:
+            form.save()
+            messages.success(request,'Item is Reorder succussefully')
+            return redirect('/')
+         
+    
+    context={'form':form}
+    return render(request,'reorder.html',context=context)
+
+
+
     
         
     
