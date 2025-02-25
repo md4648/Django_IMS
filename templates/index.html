@@ -49,6 +49,8 @@
             <th scope="col">Category</th>
             <th scope="col">Item Name</th>
             <th scope="col">Quantity In Store</th>
+            <th scope="col">TimeStamp</th>
+            <th scope="col">Last Updated</th>
             <th scope="col">Delete</th>
           </tr>
         </thead>
@@ -60,6 +62,8 @@
             <td>{{item.category}}</td>
             <td><a href="{% url 'update-item' item.id %}">{{item.item_name}}</a> </td>
             <td>{{item.quantity}}</td>
+            <td>{{item.timestamp}}</td>
+            <td>{{item.last_update}}</td>
             <td><a href="{% url 'delete_item' item.id %}">Delete</a></td>
           </tr>
 
