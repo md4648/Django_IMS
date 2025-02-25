@@ -17,6 +17,7 @@ class Stock(models.Model):
     item_name=models.CharField(max_length=50,blank=True,null=True)
     quantity=models.IntegerField(default=0,blank=True,null=True)
     received_by=models.CharField(max_length=50,blank=True,null=True)
+    received_quantity=models.IntegerField(default=0,blank=True,null=True)
     issue_quantity=models.IntegerField(default=0,blank=True,null=True)
     issue_by=models.CharField(max_length=50,blank=True,null=True)
     issue_to=models.CharField(max_length=50,blank=True,null=True)
@@ -25,9 +26,8 @@ class Stock(models.Model):
     reorder_level=models.IntegerField(default=0,blank=True,null=True)
     last_update=models.DateTimeField(auto_now_add=False,auto_now=True)
     timestamp=models.DateField(auto_now_add=True, auto_now=False)
-#     date=models.DateField(auto_now_add=False, auto_now=False)
-    # export_to_CSV=models.BooleanField(default=False)
-
+   #date=models.DateField(auto_now_add=False, auto_now=False)
+   
 
 def __str__(self):
         return self.item_name+' '+str(self.quantity)

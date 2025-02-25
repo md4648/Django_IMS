@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .forms import Stock_Create_form, Stock_Search_Form,Update_Stock_Form
+from .forms import Stock_Create_form, Stock_Search_Form,Update_Stock_Form,ReceiveForm,IssueForm
 from .models import Stock
 from django.http import HttpResponse
 from django.contrib import messages
@@ -87,6 +87,47 @@ def stock_detail(request,pk):
     
     context={'item':queryset}
     return render(request,'stock_detail.html',context=context)
+
+
+def receive_item(request,pk):
+    
+    item=Stock.objects.get(id=pk)
+    
+    form=ReceiveForm(instance=item)
+    
+    if request.method=='POST':
+        form=ReceiveForm(request.POST or None,instance=item)
+        if form.is_valid:
+            instancess=form.save(commit=False)
+            instancess.quantity+=instancess.received_quantity
+            instancess.save()
+            messages.success(request,'Quantity is Recived  succussefully')
+            # return redirect('/stock_detail/'+str(instancess.id))
+            return redirect('/')
+            
+    context={'form':form}
+    return render(request,'receive_item.html',context=context)
+
+
+
+def issue_item(request,pk):
+    
+    item=Stock.objects.get(id=pk)
+    
+    form=IssueForm(instance=item)
+    
+    if request.method=='POST':
+        form=IssueForm(request.POST or None,instance=item)
+        if form.is_valid:
+            instancess=form.save(commit=False)
+            instancess.quantity-=instancess.received_quantity
+            instancess.save()
+            messages.success(request,'Quantity is Issued  succussefully')
+            # return redirect('/stock_detail/'+str(instancess.id))
+            return redirect('/')
+            
+    context={'form':form}
+    return render(request,'issue_item.html',context=context)
     
         
     

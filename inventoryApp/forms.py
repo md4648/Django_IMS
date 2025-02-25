@@ -49,6 +49,19 @@ class Update_Stock_Form(forms.ModelForm):
         model=Stock
         fields=['category','item_name','quantity']
         
+class ReceiveForm(forms.ModelForm):
+    class Meta:
+        
+        model=Stock
+        fields=['received_quantity']
+        
+        
+class IssueForm(forms.ModelForm):
+    class Meta:
+        
+        model=Stock
+        fields=['issue_by','issue_quantity']
+        
         
         
         
