@@ -33,62 +33,36 @@
 
   {%endif%}
 
-   <h1>List Item</h1>
-  <form class="search" method="post" action="/">
-    {%csrf_token%}
-
-    {{form|crispy}}
-    <input type="submit" value="Search"/>
-  </form>
+   <h1>{{item.item_name}}</h1>
+ 
 <div class="displaytabel">
 
       <table class="table table-striped">
         <thead>
           <tr>
-            <th scope="col">count</th>
-            <th scope="col">Category</th>
-            <th scope="col">Item Name</th>
+             <th scope="col">Item Name</th>
+            
             <th scope="col">Quantity In Store</th>
-            <th scope="col">TimeStamp</th>
             <th scope="col">Last Updated</th>
-            <th scope="col">Delete</th>
+            <th>Reorder Level</th>
           </tr>
         </thead>
         <tbody>
-          {%for item in item %}
+         
        
           <tr>
-            <th scope="row">{{item.id}}</th>
-            <td>{{item.category}}</td>
             <td><a href="{% url 'update-item' item.id %}">{{item.item_name}}</a> </td>
-            <td><a href="{% url 'stock_detail' item.id %}">{{item.quantity}}</a></td>
-            <td>{{item.timestamp}}</td>
+            
+            <td>{{item.quantity}}</td>
             <td>{{item.last_update}}</td>
-            <td><a href="{% url 'delete_item' item.id %}">Delete</a></td>
+            <td>{{item.reorder_level}}</td>
+            
           </tr>
 
-        
-          {%endfor%}
         
         
         </tbody>
       </table>
-
-
-
-
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>
