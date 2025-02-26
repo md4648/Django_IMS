@@ -61,22 +61,22 @@
           <tr>
             <th scope="row">{{item.id}}</th>
             <td>{{item.category}}</td>
-            <td><a href="{% url 'update-item' item.id %}">{{item.item_name}}</a> </td>
+            <td><a href="{% url 'update-item' item.id %}"style="text-decoration:none;">{{item.item_name}}</a> </td>
             
             {%if item.quantity <= item.reorder_level%}
 
-            <td><a href="{% url 'stock_detail' item.id %}"><div  style="background: red; text-decoration: none;">{{item.quantity}}</div></a></td>
+            <td><a href="{% url 'stock_detail' item.id %} " style="text-decoration:none; "><div  style="background: rgb(233, 80, 80); color:black; text-align: center;">{{item.quantity}}</div></a></td>
             {%else%}
 
-            <td><a href="{% url 'stock_detail' item.id %}"><div >{{item.quantity}}</div></a></td>
+            <td><a href="{% url 'stock_detail' item.id %}" style="text-decoration:none; text-align: center;"><div >{{item.quantity}}</div></a></td>
 
             {%endif%}
 
 
-            <td><a href="{% url 'reorder_item' item.id %}">{{item.reorder_level}}</a></td>
+            <td><a href="{% url 'reorder_item' item.id %}" style="text-decoration:none;">{{item.reorder_level}}</a></td>
             <td>{{item.timestamp}}</td>
             <td>{{item.last_update}}</td>
-            <td><a href="{% url 'delete_item' item.id %}">Delete</a></td>
+            <td><a href="{% url 'delete_item' item.id %}" style="text-decoration:none;">Delete</a></td>
           </tr>
 
         

@@ -5,6 +5,7 @@ from .models import Stock
 from django.http import HttpResponse
 from django.contrib import messages
 import csv
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -38,7 +39,7 @@ def Home(request):
     return render(request,'index.html',context=context)
 
 
-
+@login_required
 def addItems(request):
     
     form=Stock_Create_form()
@@ -55,7 +56,7 @@ def addItems(request):
     context={'form':form}
     return render(request,'add-item.html',context=context)
 
-
+@login_required
 def updateItem(request,pk):
     
     item=Stock.objects.get(id=pk)
@@ -73,7 +74,7 @@ def updateItem(request,pk):
     
     return render(request,'update-item.html',context=context)
 
-
+@login_required
 def delete_item(request,pk):
     queryset=Stock.objects.get(id=pk)
     if request.method=='POST':
@@ -81,14 +82,14 @@ def delete_item(request,pk):
         messages.success(request,'Deleted succssefully')
         return redirect('/')
     return render(request, 'delete_item.html')
-
+@login_required
 def stock_detail(request,pk):
     queryset=Stock.objects.get(id=pk)
     
     context={'item':queryset}
     return render(request,'stock_detail.html',context=context)
 
-
+@login_required
 def receive_item(request,pk):
     
     item=Stock.objects.get(id=pk)
@@ -109,7 +110,7 @@ def receive_item(request,pk):
     return render(request,'receive_item.html',context=context)
 
 
-
+@login_required
 def issue_item(request,pk):
     
     item=Stock.objects.get(id=pk)
@@ -129,7 +130,7 @@ def issue_item(request,pk):
     context={'form':form}
     return render(request,'issue_item.html',context=context)
 
-
+@login_required
 def reorder_item(request,pk):
 
     item=Stock.objects.get(id=pk)

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'inventoryApp',
     'crispy_forms',
-    'crispy_bootstrap5',
+    'crispy_bootstrap5'
+   
+    
 ]
 
 MIDDLEWARE = [
@@ -76,21 +79,21 @@ WSGI_APPLICATION = 'Inventory_Management.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME':'stockmgnt',
-        'USER':'md',
-        'PASSWORD':'admin123'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME':'stockmgnt',
+#         'USER':'md',
+#         'PASSWORD':'admin123'
+#     }
+# }
 
 
 # Password validation
@@ -138,3 +141,9 @@ STATICFILES_DIRS=[BASE_DIR / 'static']
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+
+ACCOUNT_ACTIVATION_DAYS=7
+REGISTRATION_AUTO_LOGIN=True
+SITE_ID=1
+LOGIN_REDIRECT_URL='/'
