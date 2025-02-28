@@ -11,4 +11,6 @@ urlpatterns = [
     path('issue_item/<int:pk>',views.issue_item,name='issue_item'),
     path('reorder_item/<int:pk>',views.reorder_item,name='reorder_item'),
     path('accounts/', include('registration.backends.default.urls')),
+    path('list_history',views.list_history,name='list_history'),
+    
 ]

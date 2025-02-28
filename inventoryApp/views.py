@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .forms import Stock_Create_form, Stock_Search_Form,Update_Stock_Form,ReceiveForm,IssueForm,ReorderForm
-from .models import Stock
+from .models import Stock,StockHistory
 from django.http import HttpResponse
 from django.contrib import messages
 import csv
@@ -148,6 +148,17 @@ def reorder_item(request,pk):
     
     context={'form':form}
     return render(request,'reorder.html',context=context)
+
+@login_required
+def list_history(request):
+    header='LIST OF ITEMS'
+    queryset=StockHistory.objects.all()
+    context={
+        'header':header,
+        'queryset':queryset
+    }
+    
+    return render(request,'list_histroy.html',context=context)
 
 
 

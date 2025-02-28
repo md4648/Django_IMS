@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Stock,Category
+from .models import Stock,Category,StockHistory
 from .forms import Stock_Create_form
 
 # Register your models here.
@@ -12,4 +12,5 @@ class StockCreateAdmin(admin.ModelAdmin):
 
 admin.site.register(Stock,StockCreateAdmin)  # StockCreateAdmin  customaized table in admin 
 admin.site.register(Category)
+admin.site.register(StockHistory)
 
