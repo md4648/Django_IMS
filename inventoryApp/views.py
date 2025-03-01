@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 import csv
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import auth
 
 # Create your views here.
 
@@ -170,5 +171,7 @@ def list_history(request):
 
 
     
-        
-    
+def sign_out(request):
+    auth.logout(request)
+
+    return redirect('accounts/login')

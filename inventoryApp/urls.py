@@ -12,5 +12,6 @@ urlpatterns = [
     path('reorder_item/<int:pk>',views.reorder_item,name='reorder_item'),
     path('accounts/', include('registration.backends.default.urls')),
     path('list_history',views.list_history,name='list_history'),
+    path('sign_out',views.sign_out,name='sign_out'),
     
 ]
