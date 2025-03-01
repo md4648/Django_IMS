@@ -101,7 +101,9 @@ def receive_item(request,pk):
         if form.is_valid:
             instancess=form.save(commit=False)
             instancess.quantity+=instancess.received_quantity
+            instancess.issue_quantity=0
             instancess.save()
+            
             messages.success(request,'Quantity is Recived  succussefully')
             # return redirect('/stock_detail/'+str(instancess.id))
             return redirect('/')
@@ -122,7 +124,10 @@ def issue_item(request,pk):
         if form.is_valid:
             instancess=form.save(commit=False)
             instancess.quantity-=instancess.received_quantity
+            
+            instancess.received_quantity=0
             instancess.save()
+            
             messages.success(request,'Quantity is Issued  succussefully')
             # return redirect('/stock_detail/'+str(instancess.id))
             return redirect('/')
@@ -150,6 +155,7 @@ def reorder_item(request,pk):
     return render(request,'reorder.html',context=context)
 
 @login_required
+
 def list_history(request):
     header='LIST OF ITEMS'
     queryset=StockHistory.objects.all()
@@ -157,6 +163,7 @@ def list_history(request):
         'header':header,
         'queryset':queryset
     }
+   
     
     return render(request,'list_histroy.html',context=context)
 
