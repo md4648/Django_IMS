@@ -19,7 +19,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body >
 
   {% include 'navbar.html' %}
 
@@ -34,60 +34,70 @@
   {%endif%}
 
    <h1>List Item</h1>
-  <form class="search" method="post" action="/">
-    {%csrf_token%}
 
-    {{form|crispy}}
-    <input type="submit" value="Search"/>
-  </form>
-<div class="displaytabel">
 
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">count</th>
-            <th scope="col">Category</th>
-            <th scope="col">Item Name</th>
-            <th scope="col">Quantity In Store</th>
-            <th scope="col">Reorder Level</th>
-            <th scope="col">TimeStamp</th>
-            <th scope="col">Last Updated</th>
-            <th scope="col">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {%for item in item %}
-       
-          <tr>
-            <th scope="row">{{item.id}}</th>
-            <td>{{item.category}}</td>
-            <td><a href="{% url 'update-item' item.id %}"style="text-decoration:none;">{{item.item_name}}</a> </td>
+
+<div class="row" style="padding: 30px; background-color: rgb(224, 224, 223);">
+
+
+  <div class="col-sm-2">
+        <form class="search" method="post" action="/">
+          {%csrf_token%}
+
+          {{form|crispy}}
+          <input type="submit" value="Search"/>
+        </form><br>
+
+        <a href="/add_item"><div class="btn btn-primary">Add Item </div></a> <br> <br>
+        <a href="/list_history"><div class="btn btn-primary">List History </div></a>
+
+    </div>
+      <div class="col-sm-10 displaytabel" >
+
+            <table class=" table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">count</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Item Name</th>
+                  <th scope="col">Quantity In Store</th>
+                  <th scope="col">Reorder Level</th>
+                  <th scope="col">TimeStamp</th>
+                  <th scope="col">Last Updated</th>
+                  <th scope="col">Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%for item in item %}
             
-            {%if item.quantity <= item.reorder_level%}
+                <tr>
+                  <th scope="row">{{item.id}}</th>
+                  <td>{{item.category}}</td>
+                  <td><a href="{% url 'update-item' item.id %}"style="text-decoration:none;">{{item.item_name}}</a> </td>
+                  
+                  {%if item.quantity <= item.reorder_level%}
 
-            <td><a href="{% url 'stock_detail' item.id %} " style="text-decoration:none; "><div  style="background: rgb(233, 80, 80); color:black; text-align: center;">{{item.quantity}}</div></a></td>
-            {%else%}
+                  <td><a href="{% url 'stock_detail' item.id %} " style="text-decoration:none; "><div  style="background: rgb(233, 80, 80); color:black; text-align: center;">{{item.quantity}}</div></a></td>
+                  {%else%}
 
-            <td><a href="{% url 'stock_detail' item.id %}" style="text-decoration:none; text-align: center;"><div >{{item.quantity}}</div></a></td>
+                  <td><a href="{% url 'stock_detail' item.id %}" style="text-decoration:none; text-align: center;"><div >{{item.quantity}}</div></a></td>
 
-            {%endif%}
-
-
-            <td><a href="{% url 'reorder_item' item.id %}" style="text-decoration:none;">{{item.reorder_level}}</a></td>
-            <td>{{item.timestamp}}</td>
-            <td>{{item.last_update}}</td>
-            <td><a href="{% url 'delete_item' item.id %}" style="text-decoration:none;">Delete</a></td>
-          </tr>
-
-        
-          {%endfor%}
-        
-        
-        </tbody>
-      </table>
+                  {%endif%}
 
 
+                  <td><a href="{% url 'reorder_item' item.id %}" style="text-decoration:none;">{{item.reorder_level}}</a></td>
+                  <td>{{item.timestamp}}</td>
+                  <td>{{item.last_update}}</td>
+                  <td><a href="{% url 'delete_item' item.id %}" style="text-decoration:none;">Delete</a></td>
+                </tr>
 
+              
+                {%endfor%}
+              
+              
+              </tbody>
+            </table>
+      </div>
 
 </div>
 
