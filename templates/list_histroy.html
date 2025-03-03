@@ -23,12 +23,17 @@
 
   {% include 'navbar.html' %}
 
-  
+  <form class="search" method="post" action="/list_history">
+    {%csrf_token%}
 
-   <h1>List Item</h1>
+    {{form|crispy}}
+    <input type="submit" value="Search"/>
+  </form>
+
+   <h1>History Item</h1>
   
 <div class="displaytabel">
-  
+ 
 
       <table class="table table-striped">
         <thead>

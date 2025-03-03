@@ -128,7 +128,7 @@ def issue_item(request,pk):
             
             instancess.received_quantity=0
             instancess.save()
-            
+
             messages.success(request,'Quantity is Issued  succussefully')
             # return redirect('/stock_detail/'+str(instancess.id))
             return redirect('/')
@@ -160,10 +160,43 @@ def reorder_item(request,pk):
 def list_history(request):
     header='LIST OF ITEMS'
     queryset=StockHistory.objects.all()
-    context={
-        'header':header,
-        'queryset':queryset
-    }
+    form=Stock_Search_Form(request.POST or None)
+
+    # queryset=Stock.objects.all()
+    context={'queryset':queryset,   'form':form, 'header':header,}
+
+    if request.method=="POST":
+        category=form['category'].value()
+        queryset=StockHistory.objects.filter(#category=form['category'].value(),
+                                      item_name__icontains=form['item_name'].value())
+        
+        if(category!=''):
+            queryset=queryset.filter(category_id=category)
+
+            
+
+        if form['export_to_CSV'].value()==True:
+            response=HttpResponse(content_type='text/csv')
+            response['Content-Disposition']='attachment; filename="List of stock.csv"'
+            writer=csv.writer(response)
+            writer.writerow(['CATEGORY','ITEM NAME','QUANTITY'])
+            instance=queryset
+            for stockHistory in instance:
+                writer.writerow([stockHistory.category,stockHistory.item_name,stockHistory.quantity])
+            return response
+
+        context={
+            'queryset': queryset, 'form':form,'header':header}
+    
+    
+    
+    
+    
+    
+    # context={
+    #     'header':header,
+    #     'queryset':queryset
+    # }
    
     
     return render(request,'list_histroy.html',context=context)

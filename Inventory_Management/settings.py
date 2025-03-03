@@ -86,24 +86,25 @@ WSGI_APPLICATION = 'Inventory_Management.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME':'stockmgnt',
+#         'USER':'md',
+#         'PASSWORD':'admin123'
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME':'stockmgnt',
-        'USER':'md',
-        'PASSWORD':'admin123'
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':'IMS',
+        'USER':'postgres',
+        'PASSWORD':'admin123',
+        'HOST':'localhost'
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME':'IMS',
-#         'USER':'postgres',
-#         'PASSWORD':'admin123',
-#         'HOST':'localhost'
-#     }
-# }
 
 
 
