@@ -1,33 +1,53 @@
-.card{
+.card {
   box-shadow: 12px 12px 20px 6px rgb(160, 157, 157);
   width: 80%;
   margin: auto;
   margin-top: 20px;
 }
 
-.search{
+.search {
   width: 60%;
 }
 
-body{
-  padding: 15px ;
-  background-image: url('../css/image/bg2.avif');
+body {
+  padding: 15px;
+  background-image: url("../css/image/bg2.avif");
 }
 
-.displaytabel{
-
+.displaytabel {
   margin: auto;
   width: 85%;
   box-shadow: 12px 12px 20px 6px rgb(95, 93, 93);
 }
 
-.success{
+.success {
   list-style: none;
   background-color: brown;
   color: white;
   box-shadow: 12px 12px 12px #e61c66;
   text-align: center;
-
 }
 
+/*Table paination styling*/
+.paging-nav {
+  text-align: right;
+  padding-top: 2px;
+  font-size: 20px;
+  padding-bottom: 10px;
+}
 
+.paging-nav a {
+  margin: auto 1px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 1px 7px;
+  background: #3287a8;
+  color: white;
+  border-radius: 100px;
+}
+
+.paging-nav .selected-page {
+  font-weight: bold;
+  color: #dc3545;
+}
+/* End Table paination styling*/
