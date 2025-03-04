@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .forms import Stock_Create_form, Stock_Search_Form,Update_Stock_Form,ReceiveForm,IssueForm,ReorderForm
+from .forms import Stock_Create_form, Stock_Search_Form,Update_Stock_Form,ReceiveForm,IssueForm,ReorderForm,StockHistorySearchForm
 from .models import Stock,StockHistory
 from django.http import HttpResponse
 from django.contrib import messages
@@ -160,15 +160,26 @@ def reorder_item(request,pk):
 def list_history(request):
     header='LIST OF ITEMS'
     queryset=StockHistory.objects.all()
-    form=Stock_Search_Form(request.POST or None)
+    form=StockHistorySearchForm(request.POST or None)
 
     # queryset=Stock.objects.all()
     context={'queryset':queryset,   'form':form, 'header':header,}
 
     if request.method=="POST":
         category=form['category'].value()
-        queryset=StockHistory.objects.filter(#category=form['category'].value(),
-                                      item_name__icontains=form['item_name'].value())
+        # queryset=StockHistory.objects.filter(#category=form['category'].value(),
+        #                               item_name__icontains=form['item_name'].value())
+        
+        queryset=StockHistory.objects.filter( 
+                                             
+                                        item_name__icontains=form['item_name'].value(),
+                                        last_update__range=[ 
+                                                             form['start_date'].value(),
+                                                             form['end_date'].value()
+                                                           ]
+                                             )
+        
+        
         
         if(category!=''):
             queryset=queryset.filter(category_id=category)
@@ -177,7 +188,7 @@ def list_history(request):
 
         if form['export_to_CSV'].value()==True:
             response=HttpResponse(content_type='text/csv')
-            response['Content-Disposition']='attachment; filename="List of stock.csv"'
+            response['Content-Disposition']='attachment; filename="History of stock.csv"'
             writer=csv.writer(response)
             writer.writerow(['CATEGORY','ITEM NAME','QUANTITY'])
             instance=queryset

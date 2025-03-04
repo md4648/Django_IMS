@@ -9,12 +9,9 @@
   width: 60%;
 }
 
-nav {
-  margin: 3px;
-}
-
 body{
   padding: 15px ;
+  background-image: url('../css/image/bg2.avif');
 }
 
 .displaytabel{
@@ -32,3 +29,5 @@ body{
   text-align: center;
 
 }
+
+
